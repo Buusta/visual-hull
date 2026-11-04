@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://dd3tny86xkhms"]
+
+[ext_resource type="Script" uid="uid://bx72t4upfnkgb" path="res://scripts/read_poses.gd" id="1_nnsk1"]
+[ext_resource type="ArrayMesh" uid="uid://c5udf47u872ck" path="res://hulls/hull.obj" id="2_rwgxs"]
+[ext_resource type="Script" uid="uid://g5i8uhokjd2a" path="res://scripts/camera_switch.gd" id="3_4wyf3"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4wyf3"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_k0juu"]
+sky_material = SubResource("ProceduralSkyMaterial_4wyf3")
+
+[sub_resource type="Environment" id="Environment_71j4m"]
+background_mode = 2
+sky = SubResource("Sky_k0juu")
+tonemap_mode = 4
+ssil_radius = 3.1
+ssil_intensity = 0.1
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ehcrf"]
+albedo_color = Color(0.92099476, 0.9209946, 0.9209946, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_125dy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qfnet"]
+albedo_color = Color(0.67, 0.67, 0.67, 1)
+roughness = 0.6
+
+[node name="World" type="Node3D" unique_id=215943104]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1485306519]
+environment = SubResource("Environment_71j4m")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=507264609]
+transform = Transform3D(0.06722969, 0.6539425, -0.75355077, 0.4534844, 0.65271246, 0.6068922, 0.88872516, -0.3825248, -0.25267103, 0, 0, 0)
+light_angular_distance = 1.73
+shadow_enabled = true
+shadow_bias = 0.088
+directional_shadow_split_1 = 0.015
+directional_shadow_split_2 = 0.084
+directional_shadow_split_3 = 0.207
+directional_shadow_max_distance = 43.4
+
+[node name="Cameras" type="Node3D" parent="." unique_id=1729562037]
+script = ExtResource("1_nnsk1")
+poses_path = "res://data/camera_poses.json"
+
+[node name="IMG_20261028_121102" type="Camera3D" parent="Cameras" unique_id=1730282498]
+transform = Transform3D(0.84465307, 0.25230038, -0.47212896, -0.029150331, 0.9023357, 0.43004718, 0.53451985, -0.34947795, 0.7695153, -0.08758616, 0.19468929, 0.32859856)
+fov = 54.19492
+metadata/pose_camera = true
+metadata/image = "IMG_20261028_121102.png"
+
+[node name="IMG_20261028_121120" type="Camera3D" parent="Cameras" unique_id=1295547029]
+transform = Transform3D(0.929715, -0.13144909, 0.34402195, -0.0142923435, 0.9205502, 0.39036262, -0.3680023, -0.36784285, 0.8539707, 0.2337016, 0.16445662, 0.35142592)
+fov = 54.19492
+metadata/pose_camera = true
+metadata/image = "IMG_20261028_121120.png"
+
+[node name="IMG_20261028_121128" type="Camera3D" parent="Cameras" unique_id=194201379]
+transform = Transform3D(0.043702215, -0.993501, 0.10509928, -0.026383622, 0.10401538, 0.9942257, -0.99869615, -0.04622276, -0.02166645, 0.12787896, 0.38884845, 0.009208649)
+fov = 54.19492
+metadata/pose_camera = true
+metadata/image = "IMG_20261028_121128.png"
+
+[node name="IMG_20261028_121143" type="Camera3D" parent="Cameras" unique_id=433110851]
+transform = Transform3D(-0.86973035, -0.24086249, 0.43076026, -0.020429233, 0.889642, 0.45620146, -0.49310422, 0.38797215, -0.7786693, 0.27948087, 0.192324, -0.298599)
+fov = 54.19492
+metadata/pose_camera = true
+metadata/image = "IMG_20261028_121143.png"
+
+[node name="IMG_20261028_121158" type="Camera3D" parent="Cameras" unique_id=1176149044]
+transform = Transform3D(-0.9993247, 0.02442982, 0.027447682, 0.029605899, 0.97775495, 0.20765053, -0.021764243, 0.20832291, -0.9778179, 0.09132242, 0.075635254, -0.3090984)
+fov = 54.19492
+metadata/pose_camera = true
+metadata/image = "IMG_20261028_121158.png"
+
+[node name="IMG_20261028_121209" type="Camera3D" parent="Cameras" unique_id=1803825224]
+transform = Transform3D(-0.86348957, 0.31511435, -0.393813, 0.001299172, 0.782194, 0.6230335, 0.50436497, 0.53747135, -0.6758258, -0.035718568, 0.25078654, -0.26571965)
+fov = 54.19492
+metadata/pose_camera = true
+metadata/image = "IMG_20261028_121209.png"
+
+[node name="Hull" type="MeshInstance3D" parent="." unique_id=1533405958]
+mesh = ExtResource("2_rwgxs")
+surface_material_override/0 = SubResource("StandardMaterial3D_ehcrf")
+
+[node name="FloorMesh" type="MeshInstance3D" parent="." unique_id=1124343727]
+mesh = SubResource("PlaneMesh_125dy")
+surface_material_override/0 = SubResource("StandardMaterial3D_qfnet")
+
+[node name="CameraSwitch" type="Node" parent="." unique_id=1213660114 node_paths=PackedStringArray("cameras_root")]
+script = ExtResource("3_4wyf3")
+cameras_root = NodePath("../Cameras")
