@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://cw0yh2jygtrom"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ib22j"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_tjjxi"]
+sky_material = SubResource("ProceduralSkyMaterial_ib22j")
+
+[sub_resource type="Environment" id="Environment_kiokp"]
+background_mode = 2
+sky = SubResource("Sky_tjjxi")
+tonemap_mode = 4
+tonemap_exposure = 1.15
+tonemap_agx_contrast = 1.42
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_125dy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_125dy"]
+albedo_color = Color(0.29072073, 0.2907207, 0.2907207, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_125dy"]
+radius = 0.1
+height = 0.2
+
+[node name="Node3D" type="Node3D" unique_id=121635483]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=342202760]
+environment = SubResource("Environment_kiokp")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=834861081]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+light_energy = 0.832
+shadow_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=125908449]
+mesh = SubResource("PlaneMesh_125dy")
+surface_material_override/0 = SubResource("StandardMaterial3D_125dy")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1832235539]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -0.024660543)
+mesh = SubResource("SphereMesh_125dy")
+
+[node name="AreaLight3D" type="AreaLight3D" parent="." unique_id=837374410]
+light_color = Color(1, 0, 0, 1)
+light_energy = 500.0
+area_range = 0.01
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=2095074602]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.023985416)
+visible = false
+mesh = SubResource("PlaneMesh_125dy")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1739846169]
+transform = Transform3D(0.70710677, -0.49999997, 0.49999997, 0, 0.70710677, 0.70710677, -0.70710677, -0.49999997, 0.49999997, 0.426, 0.572, 0.356)
+fov = 48.1

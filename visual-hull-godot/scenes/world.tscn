@@ -44,6 +44,7 @@ directional_shadow_split_3 = 0.207
 directional_shadow_max_distance = 43.4
 
 [node name="Cameras" type="Node3D" parent="." unique_id=1729562037]
+visible = false
 script = ExtResource("1_nnsk1")
 poses_path = "res://data/camera_poses.json"
 
